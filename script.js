@@ -7,25 +7,23 @@ function simpan() {
   console.log(jumlah.value)
   console.log(keterangan.value)
 
-  localStorage.setItem("nama", nama.value)
-  localStorage.setItem("jumlah", jumlah.value)
-  localStorage.setItem("keterangan", keterangan.value)
-
   if (localStorage.getItem("Barang") === null) {
     localStorage.setItem("Barang", "[]")
   }
+
     let Data = JSON.parse(localStorage.getItem("Barang"))
-  console.log(Data)
+  console.log(data);
 
   Data.push({
     nama: nama.value,
     jumlah: jumlah.value,
     keterangan: keterangan.value
   })
-  console.log(Data)
+  console.log(data)
 
-  localStorage.setItem("Barang", JSON.stringify(Data))
-  TambahBarang()
+  localStorage.setItem("Barang", JSON.stringify(data))
+
+  TampilBarang();
 }
 
 function TampilBarang() {
@@ -34,10 +32,10 @@ function TampilBarang() {
   document.getElementById("hasil").innerHTML = ""
 
   hasil.forEach((element) => {
-    document.getElementById("list-barang").innerHTML += `<div class="col-lg-4 col-md-6">
-          <h5 class="card-title">${element.nama}</h5>
-          <p class="card-text">Jumlah: ${element.jumlah}</p>
-          <p class="card-text">Keterangan: ${element.keterangan}</p>
+    document.getElementById("list-barang").innerHTML += `
+          <h5 class="text-primary">${element.nama}</h5>
+          <h6 class="text-primary">Jumlah: ${element.jumlah}</h6>
+          <p class="text-primary">Keterangan: ${element.keterangan}</p>
       </div>`
   });
 
